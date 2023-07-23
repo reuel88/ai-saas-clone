@@ -8,12 +8,17 @@ import { ChatCompletionRequestMessage } from "openai";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import BotAvatar from "@/components/BotAvatar";
 import Empty from "@/components/Empty";
 import Heading from "@/components/Heading";
+import Loader from "@/components/Loader";
+import UserAvatar from "@/components/UserAvatar";
 import { cn } from "@/lib/utils";
+
 import { formSchema } from "./constants";
 
 const ConversationPage: NextPage = () => {
@@ -99,7 +104,7 @@ const ConversationPage: NextPage = () => {
         <div className="mt-4 space-y-4">
           {isLoading && (
             <div className="flex w-full items-center justify-center rounded-lg bg-muted p-8">
-              Loading
+              <Loader />
             </div>
           )}
           {messages.length === 0 && !isLoading && (
@@ -116,6 +121,7 @@ const ConversationPage: NextPage = () => {
                     : "bg-muted",
                 )}
               >
+                {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
                 <p className="text-sm">{message.content}</p>
               </div>
             ))}
