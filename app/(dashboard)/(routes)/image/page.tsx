@@ -34,7 +34,7 @@ const ImagePage: NextPage = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       prompt: "",
-      amount: "1",
+      amount: "5",
       resolution: "512x512",
     },
   });
