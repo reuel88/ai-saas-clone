@@ -6,6 +6,7 @@ import { NextPage } from "next";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import * as z from "zod";
 
 import { Button } from "@/components/ui/button";
@@ -14,11 +15,13 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import Empty from "@/components/Empty";
 import Heading from "@/components/Heading";
 import Loader from "@/components/Loader";
+import { useProModal } from "@/hooks/useProModal";
 
 import { formSchema } from "./constants";
 
 const MusicPage: NextPage = () => {
   const router = useRouter();
+  const proModal = useProModal();
   const [music, setMusic] = useState<string>();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -39,8 +42,11 @@ const MusicPage: NextPage = () => {
       setMusic(response.data.audio);
       form.reset();
     } catch (error: any) {
-      // TODO: Open Pro Modal
-      console.log(error);
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      } else {
+        toast.error("Something went wrong.");
+      }
     } finally {
       router.refresh();
     }

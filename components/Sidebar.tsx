@@ -12,9 +12,10 @@ import {
 import { Montserrat } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
-import { FC } from "react";
-import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import { FC } from "react";
+import FreeCounter from "@/components/FreeCounter";
+import { cn } from "@/lib/utils";
 
 const montserrat = Montserrat({ weight: "600", subsets: ["latin"] });
 
@@ -66,14 +67,17 @@ const routes = [
   },
 ];
 
-type SidebarProps = {};
+type SidebarProps = {
+  apiLimitCount: number;
+  isPro: boolean;
+};
 
-const Sidebar: FC<SidebarProps> = () => {
+const Sidebar: FC<SidebarProps> = ({ apiLimitCount = 0, isPro = false }) => {
   const pathname = usePathname();
 
   return (
     <div className="flex h-full flex-col space-y-4 bg-[#111827] py-4 text-white">
-      <div className="px-3 py-2">
+      <div className="flex-1 px-3 py-2">
         <Link href="/dashboard" className="mb-14 flex items-center pl-3">
           <div className="relative mr-4 h-8 w-8">
             <Image fill alt="logo" src="/images/logo.png" />
@@ -102,6 +106,7 @@ const Sidebar: FC<SidebarProps> = () => {
           ))}
         </div>
       </div>
+      <FreeCounter isPro={isPro} apiLimitCount={apiLimitCount} />
     </div>
   );
 };
