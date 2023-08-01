@@ -3,9 +3,9 @@
 import axios from "axios";
 import { FC, useState } from "react";
 import { Zap } from "lucide-react";
-import { toast } from "react-hot-toast";
 
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
 
 type SubscriptionButtonProps = {
   isPro: boolean;
@@ -14,6 +14,7 @@ type SubscriptionButtonProps = {
 export const SubscriptionButton: FC<SubscriptionButtonProps> = ({
   isPro = false,
 }) => {
+  const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = async () => {
@@ -24,7 +25,11 @@ export const SubscriptionButton: FC<SubscriptionButtonProps> = ({
 
       window.location.href = response.data.url;
     } catch (error) {
-      toast.error("Something went wrong");
+      toast({
+        variant: "destructive",
+        description: "Something went wrong.",
+        duration: 3000,
+      });
     } finally {
       setIsLoading(false);
     }

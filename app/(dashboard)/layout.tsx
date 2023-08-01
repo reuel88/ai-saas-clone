@@ -8,21 +8,19 @@ type DashboardLayoutProps = {
   children: ReactNode;
 };
 
-const DashboardLayout = async ({ children }: DashboardLayoutProps) => {
+export default async function DashboardLayout({
+  children,
+}: DashboardLayoutProps) {
   const apiLimitCount = await getApiLimitCount();
   const isPro = await checkSubscription();
 
   return (
-    <div className="relative h-full">
-      <div className="z-[80] hidden h-full bg-gray-900 md:fixed md:inset-y-0 md:flex md:w-72 md:flex-col">
+    <div className="h-full">
+      <Navbar isPro={isPro} apiLimitCount={apiLimitCount} />
+      <div className="fixed inset-y-0 mt-16 hidden h-full w-28 flex-col md:flex">
         <Sidebar isPro={isPro} apiLimitCount={apiLimitCount} />
       </div>
-      <main className="md:pl-72">
-        <Navbar />
-        {children}
-      </main>
+      <main className="h-full pt-16 md:pl-28">{children}</main>
     </div>
   );
-};
-
-export default DashboardLayout;
+}

@@ -2,12 +2,11 @@
 import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Code } from "lucide-react";
-import { NextPage } from "next";
 import { useRouter } from "next/navigation";
 import { ChatCompletionRequestMessage } from "openai";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
+import { useToast } from "@/components/ui/use-toast";
 import ReactMarkdown from "react-markdown";
 import * as z from "zod";
 
@@ -24,7 +23,8 @@ import { cn } from "@/lib/utils";
 
 import { formSchema } from "./constants";
 
-const CodePage: NextPage = () => {
+export default function CodePage() {
+  const { toast } = useToast();
   const router = useRouter();
   const proModal = useProModal();
   const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
@@ -58,7 +58,11 @@ const CodePage: NextPage = () => {
       if (error?.response?.status === 403) {
         proModal.onOpen();
       } else {
-        toast.error("Something went wrong.");
+        toast({
+          variant: "destructive",
+          description: "Something went wrong.",
+          duration: 3000,
+        });
       }
       console.log(error);
     } finally {
@@ -89,7 +93,7 @@ const CodePage: NextPage = () => {
                     <FormControl className="m-0 p-0">
                       <Input
                         type="text"
-                        className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
+                        className="border-0 bg-transparent outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                         disabled={isLoading}
                         placeholder="Simple toggle button using react hooks."
                         {...field}
@@ -125,7 +129,7 @@ const CodePage: NextPage = () => {
                 className={cn(
                   "flex w-full items-start gap-x-8 rounded-lg p-8",
                   message.role === "user"
-                    ? "border border-black/10 bg-white"
+                    ? "border border-primary/10 bg-primary text-secondary"
                     : "bg-muted",
                 )}
               >
@@ -152,6 +156,4 @@ const CodePage: NextPage = () => {
       </div>
     </div>
   );
-};
-
-export default CodePage;
+}

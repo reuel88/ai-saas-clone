@@ -23,14 +23,13 @@ html, body, :root{
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
  
-    /*--primary: 222.2 47.4% 11.2%;*/
-    --primary: 248 90% 66%;
+    --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 210 40% 98%;
  
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
  
-    --accent: 210 40% 96.1%;
+    --accent: 248 90% 66%;
     --accent-foreground: 222.2 47.4% 11.2%;
  
     --destructive: 0 84.2% 60.2%;
@@ -63,7 +62,7 @@ html, body, :root{
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
  
-    --accent: 217.2 32.6% 17.5%;
+    --accent: 248 90% 66%;
     --accent-foreground: 210 40% 98%;
  
     --destructive: 0 62.8% 30.6%;

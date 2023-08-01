@@ -2,12 +2,11 @@
 import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { MessageSquare } from "lucide-react";
-import { NextPage } from "next";
 import { useRouter } from "next/navigation";
 import { ChatCompletionRequestMessage } from "openai";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
+
 import * as z from "zod";
 
 import { Button } from "@/components/ui/button";
@@ -21,8 +20,10 @@ import UserAvatar from "@/components/UserAvatar";
 import { useProModal } from "@/hooks/useProModal";
 import { cn } from "@/lib/utils";
 import { formSchema } from "./constants";
+import { useToast } from "@/components/ui/use-toast";
 
-const ConversationPage: NextPage = () => {
+export default function ConversationPage() {
+  const { toast } = useToast();
   const router = useRouter();
   const proModal = useProModal();
   const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
@@ -56,7 +57,11 @@ const ConversationPage: NextPage = () => {
       if (error?.response?.status === 403) {
         proModal.onOpen();
       } else {
-        toast.error("Something went wrong.");
+        toast({
+          variant: "destructive",
+          description: "Something went wrong.",
+          duration: 3000,
+        });
       }
     } finally {
       router.refresh();
@@ -86,7 +91,7 @@ const ConversationPage: NextPage = () => {
                     <FormControl className="m-0 p-0">
                       <Input
                         type="text"
-                        className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
+                        className="border-0 bg-transparent outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                         disabled={isLoading}
                         placeholder="How do I calculate the radius of a circle?"
                         {...field}
@@ -122,7 +127,7 @@ const ConversationPage: NextPage = () => {
                 className={cn(
                   "flex w-full items-start gap-x-8 rounded-lg p-8",
                   message.role === "user"
-                    ? "border border-black/10 bg-white"
+                    ? "border border-primary/10 bg-primary text-secondary"
                     : "bg-muted",
                 )}
               >
@@ -135,6 +140,4 @@ const ConversationPage: NextPage = () => {
       </div>
     </div>
   );
-};
-
-export default ConversationPage;
+}

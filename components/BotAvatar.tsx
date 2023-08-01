@@ -1,10 +1,16 @@
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { FC } from "react";
+import { cn } from "../lib/utils";
 
-const BotAvatar: FC = () => {
+type BotAvatarProps  ={
+  src?: string;
+  className?: string
+}
+
+const BotAvatar: FC<BotAvatarProps> = ({className = '', src = '/images/logo.png'}) => {
   return (
-    <Avatar className="h-8 w-8">
-      <AvatarImage className="p-1" src="/images/logo.png" />
+    <Avatar className={cn('h-8 w-8', className)}>
+      <AvatarImage src={src} />
     </Avatar>
   );
 };

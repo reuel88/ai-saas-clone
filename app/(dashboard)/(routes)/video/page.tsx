@@ -2,11 +2,9 @@
 import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { VideoIcon } from "lucide-react";
-import { NextPage } from "next";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 import * as z from "zod";
 
 import { Button } from "@/components/ui/button";
@@ -18,8 +16,10 @@ import Loader from "@/components/Loader";
 import { useProModal } from "@/hooks/useProModal";
 
 import { formSchema } from "./constants";
+import { useToast } from "@/components/ui/use-toast";
 
-const MusicPage: NextPage = () => {
+export default function MusicPage() {
+  const { toast } = useToast();
   const router = useRouter();
   const proModal = useProModal();
   const [video, setVideo] = useState<string>();
@@ -45,7 +45,11 @@ const MusicPage: NextPage = () => {
       if (error?.response?.status === 403) {
         proModal.onOpen();
       } else {
-        toast.error("Something went wrong.");
+        toast({
+          variant: "destructive",
+          description: "Something went wrong.",
+          duration: 3000,
+        });
       }
     } finally {
       router.refresh();
@@ -75,7 +79,7 @@ const MusicPage: NextPage = () => {
                     <FormControl className="m-0 p-0">
                       <Input
                         type="text"
-                        className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
+                        className="border-0 bg-transparent outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                         disabled={isLoading}
                         placeholder="Clown fish swimming in a coral reef"
                         {...field}
@@ -114,6 +118,4 @@ const MusicPage: NextPage = () => {
       </div>
     </div>
   );
-};
-
-export default MusicPage;
+}

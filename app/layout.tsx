@@ -2,9 +2,11 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import { cn } from "@/lib/utils";
 import { ModalProvider } from "@/providers/ModalProvider";
-import { ToasterProvider } from "@/providers/ToasterProvider";
 import { CrispProvider } from "@/providers/CrispProvider";
+import { ThemeProvider } from "@/providers/ThemeProvider";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,12 +22,14 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <CrispProvider />
-        <body className={inter.className}>
-          <ModalProvider />
-          <ToasterProvider />
-          {children}
+        <body className={cn("bg-primary-foreground", inter.className)}>
+          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+            <ModalProvider />
+            {children}
+            <Toaster />
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>

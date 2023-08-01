@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import { Check, Zap } from "lucide-react";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -17,11 +17,21 @@ import {
 import { tools } from "@/constants";
 import { useProModal } from "@/hooks/useProModal";
 import { cn } from "@/lib/utils";
-import { toast } from "react-hot-toast";
+import { useToast } from "@/components/ui/use-toast";
 
 const ProModal: FC = () => {
+  const { toast } = useToast();
   const proModal = useProModal();
   const [isLoading, setIsLoading] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
 
   const onSubscribe = async () => {
     try {
@@ -30,7 +40,11 @@ const ProModal: FC = () => {
 
       window.location.href = response.data.url;
     } catch (error: any) {
-      toast.error("Something went wrong");
+      toast({
+        variant: "destructive",
+        description: "Something went wrong.",
+        duration: 3000,
+      });
     } finally {
       setIsLoading(false);
     }
