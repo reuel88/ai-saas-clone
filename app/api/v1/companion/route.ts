@@ -14,6 +14,7 @@ export async function POST(req: Request) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
+    // TODO: move to zod
     if (
       !src ||
       !name ||

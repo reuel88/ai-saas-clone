@@ -32,10 +32,10 @@ import ImageUpload from "@/components/ImageUpload";
 import { formSchema, PREAMBLE, SEED_CHAT } from "../constants";
 import { useToast } from "@/components/ui/use-toast";
 
-type CompanionFormProps = {
+interface CompanionFormProps {
   categories: Category[];
   initialData: Companion | null;
-};
+}
 
 export const CompanionForm: FC<CompanionFormProps> = ({
   categories,

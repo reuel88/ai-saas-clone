@@ -5,8 +5,10 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { cn } from "@/lib/utils";
 import { ModalProvider } from "@/providers/ModalProvider";
 import { CrispProvider } from "@/providers/CrispProvider";
+import { ReactQueryProvider } from "@/providers/ReactQueryProvider";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { Toaster } from "@/components/ui/toaster";
+import { ReactNode } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,21 +17,23 @@ export const metadata: Metadata = {
   description: "AI Learning Platform",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+interface RootLayoutProps {
+  children: ReactNode;
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <CrispProvider />
         <body className={cn("bg-primary-foreground", inter.className)}>
-          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-            <ModalProvider />
-            {children}
-            <Toaster />
-          </ThemeProvider>
+          <ReactQueryProvider>
+            <ThemeProvider>
+              <ModalProvider />
+              {children}
+              <Toaster />
+            </ThemeProvider>
+          </ReactQueryProvider>
         </body>
       </html>
     </ClerkProvider>

@@ -1,16 +1,27 @@
 import {
   Bot,
   Code,
+  GraduationCap,
   ImageIcon,
+  LayoutDashboard,
   MessageSquare,
   Music,
+  Settings,
   VideoIcon,
 } from "lucide-react";
 
 export const MAX_FREE_COUNTS = 5;
 
-export const tools = [
+export const routes = [
   {
+    id: "dashboard",
+    label: "Dashboard",
+    icon: LayoutDashboard,
+    href: "/dashboard",
+    color: "text-slate-500",
+  },
+  {
+    id: "companion",
     label: "Companion",
     icon: Bot,
     href: "/companion",
@@ -18,6 +29,7 @@ export const tools = [
     bgColor: "bg-cyan-500/10",
   },
   {
+    id: "conversation",
     label: "Conversation",
     icon: MessageSquare,
     href: "/conversation",
@@ -25,6 +37,7 @@ export const tools = [
     bgColor: "bg-violet-500/10",
   },
   {
+    id: "music",
     label: "Music Generation",
     icon: Music,
     href: "/music",
@@ -32,24 +45,45 @@ export const tools = [
     bgColor: "bg-emerald-500/10",
   },
   {
+    id: "image",
     label: "image Generation",
     icon: ImageIcon,
+    href: "/image",
     color: "text-pink-700",
     bgColor: "bg-pink-700/10",
-    href: "/image",
   },
   {
+    id: "video",
     label: "Video Generation",
     icon: VideoIcon,
+    href: "/video",
     color: "text-orange-700",
     bgColor: "bg-orange-700/10",
-    href: "/video",
   },
   {
+    id: "code",
     label: "Code Generation",
+    description: "Generate code using descriptive text.",
     icon: Code,
+    href: "/code",
     color: "text-green-700",
     bgColor: "bg-green-700/10",
-    href: "/code",
+  },
+  // {
+  //   id: "course",
+  //   label: "Generate Courses",
+  //   description: "Generate courses using descriptive text.",
+  //   icon: GraduationCap,
+  //   href: "/course",
+  //   color: "text-indigo-500",
+  //   bgColor: "bg-indigo-500/10",
+  // },
+  {
+    id: "settings",
+    label: "Settings",
+    icon: Settings,
+    href: "/settings",
   },
 ];
+
+export const tools = [...[...routes].splice(1, routes.length - 2)];

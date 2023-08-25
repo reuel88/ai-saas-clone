@@ -7,12 +7,12 @@ import { Bot, Plus, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-type CompanionPageProps = {
+interface CompanionPageProps {
   searchParams: {
     categoryId: string;
     name: string;
   };
-};
+}
 
 export default async function CompanionPage({
   searchParams,

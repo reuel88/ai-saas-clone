@@ -2,62 +2,14 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
-  provider = "mysql"
-  url = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
   relationMode = "prisma"
-}
-
-model Category {
-  id            String @id @default(uuid())
-  name          String
-  companions    Companion[]
-}
-
-model Companion {
-  id            String @id @default(uuid())
-  userId        String
-  userName      String
-  src           String
-  name          String @db.Text
-  description   String
-  instructions  String @db.Text
-  seed          String @db.Text
-
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-
-  category      Category @relation(fields: [categoryId], references: [id])
-  categoryId    String
-
-  messages      Message[]
-
-  @@index([categoryId])
-  @@fulltext([name])
-}
-
-enum Role {
-  user
-  system
-}
-
-model Message {
-  id          String   @id @default(uuid())
-  role        Role
-  content     String   @db.Text
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  companionId String
-  userId      String
-
-  companion   Companion @relation(fields: [companionId], references: [id], onDelete: Cascade)
-
-  @@index([companionId])
 }
 
 model UserApiLimit {
@@ -69,10 +21,104 @@ model UserApiLimit {
 }
 
 model UserSubscription {
-  id                      String    @id @default(cuid())
-  userId                  String    @unique
-  stripeCustomerId        String?   @unique @map(name: "stripe_customer_id")
-  stripeSubscriptionId    String?   @unique @map(name: "stripe_subscription_id")
-  stripePriceId           String?   @map(name: "stripe_price_id")
-  stripeCurrentPeriodEnd  DateTime? @map(name: "stripe_current_period_end")
+  id                     String    @id @default(cuid())
+  userId                 String    @unique
+  stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
+  stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
+  stripePriceId          String?   @map(name: "stripe_price_id")
+  stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
+}
+
+// Related to Compainons
+model Category {
+  id         String      @id @default(uuid())
+  name       String
+  companions Companion[]
+}
+
+model Companion {
+  id           String @id @default(uuid())
+  userId       String
+  userName     String
+  src          String
+  name         String @db.Text
+  description  String
+  instructions String @db.Text
+  seed         String @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId String
+
+  messages Message[]
+
+  @@index([categoryId])
+  @@fulltext([name])
+}
+
+enum Role {
+  user
+  system
+}
+
+model Message {
+  id        String   @id @default(uuid())
+  role      Role
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  companionId String
+  userId      String
+
+  companion Companion @relation(fields: [companionId], references: [id], onDelete: Cascade)
+
+  @@index([companionId])
+}
+
+// Related to Courses
+model Course {
+  id    String @id @default(cuid())
+  name  String
+  image String
+  units Unit[]
+}
+
+model Unit {
+  id       String @id @default(cuid())
+  courseId String
+
+  name     String
+  course   Course    @relation(fields: [courseId], references: [id])
+  chapters Chapter[]
+
+  @@index([courseId], name: "courseId")
+}
+
+model Chapter {
+  id     String @id @default(cuid())
+  unitId String
+
+  name               String
+  youtubeSearchQuery String
+  videoId            String?
+  summary            String?    @db.VarChar(3000)
+  unit               Unit       @relation(fields: [unitId], references: [id])
+  questions          Question[]
+
+  @@index([unitId], name: "unit")
+}
+
+model Question {
+  id        String @id @default(cuid())
+  chapterId String
+
+  question String  @db.VarChar(3000)
+  answer   String  @db.VarChar(3000)
+  options  String  @db.VarChar(3000)
+  chapter  Chapter @relation(fields: [chapterId], references: [id])
+
+  @@index([chapterId], name: "chapterId")
 }
