@@ -3,6 +3,7 @@
 import {
   Bot,
   Code,
+  GraduationCap,
   ImageIcon,
   LayoutDashboard,
   MessageSquare,
@@ -61,6 +62,12 @@ const routes = [
     color: "text-green-700",
   },
   {
+    label: "Create Course",
+    icon: GraduationCap,
+    href: "/course/create",
+    color: "text-indigo-700",
+  },
+  {
     label: "Settings",
     icon: Settings,
     href: "/settings",
@@ -94,7 +101,7 @@ type SidebarProps = {
   isPro: boolean;
 };
 
-const Sidebar: FC<SidebarProps> = ({ isPro = false }) => {
+export const Sidebar: FC<SidebarProps> = ({ isPro = false }) => {
   const pathname = usePathname();
 
   return (
@@ -114,5 +121,3 @@ const Sidebar: FC<SidebarProps> = ({ isPro = false }) => {
     </div>
   );
 };
-
-export default Sidebar;

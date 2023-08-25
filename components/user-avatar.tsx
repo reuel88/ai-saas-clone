@@ -7,7 +7,7 @@ type UserAvatarProps = {
   className?: string;
 };
 
-const UserAvatar: FC<UserAvatarProps> = ({ className = "" }) => {
+export const UserAvatar: FC<UserAvatarProps> = ({ className = "" }) => {
   const { user } = useUser();
 
   return (
@@ -20,5 +20,3 @@ const UserAvatar: FC<UserAvatarProps> = ({ className = "" }) => {
     </Avatar>
   );
 };
-
-export default UserAvatar;

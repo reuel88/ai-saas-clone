@@ -18,7 +18,7 @@ type ChatFormProps = {
   isLoading: boolean;
 };
 
-const ChatForm: FC<ChatFormProps> = ({
+export const ChatForm: FC<ChatFormProps> = ({
   input,
   handleInputChange,
   onSubmit,
@@ -42,5 +42,3 @@ const ChatForm: FC<ChatFormProps> = ({
     </form>
   );
 };
-
-export default ChatForm;

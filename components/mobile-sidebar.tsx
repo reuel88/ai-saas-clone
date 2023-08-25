@@ -3,14 +3,14 @@
 import { Menu } from "lucide-react";
 import { type FC, useEffect, useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import Sidebar from "@/components/Sidebar";
+import { Sidebar } from "@/components/sidebar";
 
 type MobileSidebarProps = {
   apiLimitCount: number;
   isPro: boolean;
 };
 
-const MobileSidebar: FC<MobileSidebarProps> = ({
+export const MobileSidebar: FC<MobileSidebarProps> = ({
   apiLimitCount = 0,
   isPro = false,
 }) => {
@@ -35,5 +35,3 @@ const MobileSidebar: FC<MobileSidebarProps> = ({
     </Sheet>
   );
 };
-
-export default MobileSidebar;

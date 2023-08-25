@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/db";
 
-import CompanionForm from "./components/CompanionForm";
+import { CompanionForm } from "./_components/companion-form";
 import { checkSubscription } from "@/lib/subscription";
 import { auth, redirectToSignIn } from "@clerk/nextjs";
 import { redirect } from "next/navigation";

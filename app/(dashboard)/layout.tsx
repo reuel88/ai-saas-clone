@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import Navbar from "@/components/Navbar";
-import Sidebar from "@/components/Sidebar";
+import { Navbar } from "@/components/navbar";
+import { Sidebar } from "@/components/sidebar";
 import { getApiLimitCount } from "@/lib/api-limit";
 import { checkSubscription } from "@/lib/subscription";
 
@@ -15,12 +15,12 @@ export default async function DashboardLayout({
   const isPro = await checkSubscription();
 
   return (
-    <div className="h-full">
+    <div className="min-h-full">
       <Navbar isPro={isPro} apiLimitCount={apiLimitCount} />
       <div className="fixed inset-y-0 mt-16 hidden h-full w-28 flex-col md:flex">
         <Sidebar isPro={isPro} apiLimitCount={apiLimitCount} />
       </div>
-      <main className="h-full pt-16 md:pl-28">{children}</main>
+      <main className="min-h-full pt-16 md:pl-28">{children}</main>
     </div>
   );
 }

@@ -1,13 +1,14 @@
 "use client";
+
+import { FC } from "react";
 import { Copy } from "lucide-react";
 import { useTheme } from "next-themes";
-import { FC } from "react";
 import { BeatLoader } from "react-spinners";
 
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
-import BotAvatar from "@/components/BotAvatar";
-import UserAvatar from "@/components/UserAvatar";
+import { BotAvatar } from "@/components/bot-avatar";
+import { UserAvatar } from "@/components/user-avatar";
 import { cn } from "@/lib/utils";
 
 export type ChatMessageProps = {
@@ -17,7 +18,7 @@ export type ChatMessageProps = {
   src?: string;
 };
 
-const ChatMessage: FC<ChatMessageProps> = ({
+export const ChatMessage: FC<ChatMessageProps> = ({
   role,
   content,
   isLoading,

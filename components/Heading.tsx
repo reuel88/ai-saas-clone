@@ -1,8 +1,11 @@
 import { LucideIcon } from "lucide-react";
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import ReactMarkdown from "react-markdown";
+import children = ReactMarkdown.propTypes.children;
 
 type HeadingProps = {
+  children?: ReactNode;
   title: string;
   description: string;
   icon: LucideIcon;
@@ -11,6 +14,7 @@ type HeadingProps = {
 };
 
 const Heading: FC<HeadingProps> = ({
+  children,
   title,
   description,
   icon: Icon,
@@ -18,15 +22,19 @@ const Heading: FC<HeadingProps> = ({
   bgColor,
 }) => {
   return (
-    <div className="my-8 flex items-center gap-x-3 px-4 lg:px-8">
-      <div className={cn("w-fit rounded-md p-2", bgColor)}>
-        <Icon className={cn("h-10 w-10", iconColor)} />
+    <header className="my-8 flex items-center gap-x-6 px-4 lg:px-8">
+      <div className="flex items-center gap-x-3">
+        <div className={cn("w-fit rounded-md p-2", bgColor)}>
+          <Icon className={cn("h-10 w-10", iconColor)} />
+        </div>
+        <div>
+          <h2 className="text-3xl font-bold">{title}</h2>
+          <p className="text-sm text-muted-foreground">{description}</p>
+        </div>
       </div>
-      <div>
-        <h2 className="text-3xl font-bold">{title}</h2>
-        <p className="text-sm text-muted-foreground">{description}</p>
-      </div>
-    </div>
+
+      {children && <div>{children}</div>}
+    </header>
   );
 };
 

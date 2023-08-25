@@ -1,13 +1,13 @@
 "use client";
 
-import { useCompletion } from "ai/react";
 import { FC, FormEvent, useState } from "react";
-import { Companion, Message } from "@prisma/client";
 import { useRouter } from "next/navigation";
-import ChatHeader from "@/components/ChatHeader";
-import ChatMessages from "@/components/ChatMessages";
-import ChatForm from "@/components/ChatForm";
-import { ChatMessageProps } from "@/components/ChatMessage";
+import { Companion, Message } from "@prisma/client";
+import { useCompletion } from "ai/react";
+import { ChatHeader } from "./chat-header";
+import { ChatMessages } from "./chat-messages";
+import { ChatForm } from "./chat-form";
+import { ChatMessageProps } from "./chat-message";
 
 type ChatClientProps = {
   companion: Companion & {
@@ -18,7 +18,7 @@ type ChatClientProps = {
   };
 };
 
-const ChatClient: FC<ChatClientProps> = ({ companion }) => {
+export const ChatClient: FC<ChatClientProps> = ({ companion }) => {
   const router = useRouter();
   const [messages, setMessages] = useState<ChatMessageProps[]>(
     companion.messages,
@@ -68,5 +68,3 @@ const ChatClient: FC<ChatClientProps> = ({ companion }) => {
     </div>
   );
 };
-
-export default ChatClient;

@@ -1,10 +1,10 @@
+import { FC } from "react";
+import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
 import { Poppins } from "next/font/google";
-import Link from "next/link";
-import { FC } from "react";
-import MobileSidebar from "@/components/MobileSidebar";
 import { cn } from "@/lib/utils";
-import ModeToggle from "@/components/ModeToggle";
+import { MobileSidebar } from "@/components/mobile-sidebar";
+import ModeToggle from "@/components/mode-toggle";
 import FreeCounter from "@/components/FreeCounter";
 
 const font = Poppins({ weight: "600", subsets: ["latin"] });
@@ -14,7 +14,7 @@ type NavbarProps = {
   isPro: boolean;
 };
 
-const Navbar: FC<NavbarProps> = async ({
+export const Navbar: FC<NavbarProps> = async ({
   apiLimitCount = 0,
   isPro = false,
 }) => {
@@ -29,7 +29,7 @@ const Navbar: FC<NavbarProps> = async ({
               font.className,
             )}
           >
-            genius.ai
+            AI Journey
           </h1>
         </Link>
       </div>
@@ -42,5 +42,3 @@ const Navbar: FC<NavbarProps> = async ({
     </div>
   );
 };
-
-export default Navbar;

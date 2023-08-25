@@ -32,17 +32,6 @@ const Companions: FC<CompanionsProps> = ({ data }) => {
 
   return (
     <div className="grid grid-cols-2 gap-2 pb-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-      <Card className="cursor-pointer rounded-xl border-0 bg-primary/10 transition hover:opacity-75">
-        <Link href={`/companion/new`}>
-          <CardHeader className="flex items-center justify-center text-center text-muted-foreground">
-            <div className="relative flex h-32 w-32 items-center justify-center ">
-              <Plus className="h-20 w-20" />
-            </div>
-            <p className="font-bold">Create New</p>
-            <p className="text-xs">Generate a new companion</p>
-          </CardHeader>
-        </Link>
-      </Card>
       {data.map((item) => (
         <Card
           key={item.name}

@@ -6,8 +6,8 @@ import Link from "next/link";
 
 export default async function DashboardPage() {
   return (
-    <div className="h-full space-y-2 p-4">
-      <div className="mx-auto h-full max-w-3xl space-y-2 p-4">
+    <div className="min-h-full space-y-2 p-4">
+      <div className="mx-auto min-h-full max-w-3xl space-y-2 p-4">
         <div className="mb-8 space-y-4">
           <h2 className="text-center text-2xl font-bold md:text-4xl">
             Explore the power of AI

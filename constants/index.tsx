@@ -1,8 +1,22 @@
-import { Code, ImageIcon, MessageSquare, Music, VideoIcon } from "lucide-react";
+import {
+  Bot,
+  Code,
+  ImageIcon,
+  MessageSquare,
+  Music,
+  VideoIcon,
+} from "lucide-react";
 
 export const MAX_FREE_COUNTS = 5;
 
 export const tools = [
+  {
+    label: "Companion",
+    icon: Bot,
+    href: "/companion",
+    color: "text-cyan-500",
+    bgColor: "bg-cyan-500/10",
+  },
   {
     label: "Conversation",
     icon: MessageSquare,

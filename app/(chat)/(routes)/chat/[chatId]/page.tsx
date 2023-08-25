@@ -1,6 +1,6 @@
 import { auth, redirectToSignIn } from "@clerk/nextjs";
 import { prisma } from "@/lib/db";
-import ChatClient from "./components/ChatClient";
+import { ChatClient } from "./_components/chat-client";
 import { redirect } from "next/navigation";
 
 type ChatIdPageProps = {

@@ -1,9 +1,11 @@
-import SearchInput from "@/components/SearchInput";
+import SearchInput from "@/components/search-input";
 import { prisma } from "@/lib/db";
 import Categories from "@/components/Categories";
 import Companions from "@/components/Companions";
 import Heading from "@/components/Heading";
-import { Bot, Settings } from "lucide-react";
+import { Bot, Plus, Settings } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 type CompanionPageProps = {
   searchParams: {
@@ -44,8 +46,15 @@ export default async function CompanionPage({
         icon={Bot}
         iconColor="text-cyan-500"
         bgColor="bg-cyan-500/10"
-      />
-      <div className="h-full space-y-2 p-4">
+      >
+        <Button asChild variant="secondary" className="flex gap-x-2">
+          <Link href={`/companion/new`}>
+            <p className="font-bold">Create New</p>
+            <Plus />
+          </Link>
+        </Button>
+      </Heading>
+      <div className="h-full space-y-2 p-4 lg:px-8">
         <SearchInput />
         <Categories data={categories} />
         <Companions data={data} />

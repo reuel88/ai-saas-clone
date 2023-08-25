@@ -1,6 +1,6 @@
 import { ElementRef, FC, useEffect, useRef, useState } from "react";
 import { Companion } from "@prisma/client";
-import ChatMessage, { ChatMessageProps } from "@/components/ChatMessage";
+import { ChatMessage, ChatMessageProps } from "./chat-message";
 
 type ChatMessagesProps = {
   messages: ChatMessageProps[];
@@ -8,7 +8,7 @@ type ChatMessagesProps = {
   companion: Companion;
 };
 
-const ChatMessages: FC<ChatMessagesProps> = ({
+export const ChatMessages: FC<ChatMessagesProps> = ({
   messages = [],
   isLoading,
   companion,
@@ -52,5 +52,3 @@ const ChatMessages: FC<ChatMessagesProps> = ({
     </div>
   );
 };
-
-export default ChatMessages;
