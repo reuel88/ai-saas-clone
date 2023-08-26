@@ -62,21 +62,26 @@ const ProModal: FC = () => {
               </Badge>
             </div>
           </DialogTitle>
-          <DialogDescription className="space-y-2 pt-2 text-center font-medium text-zinc-900">
-            {tools.map((tool) => (
-              <Card
-                key={tool.href}
-                className="flex items-center justify-between border-black/5 p-3"
-              >
-                <div className="flex items-center gap-x-4">
-                  <div className={cn("w-fit rounded-md p-2", tool.bgColor)}>
-                    <tool.icon className={cn("h-6 w-6", tool.color)} />
+          <DialogDescription
+            asChild
+            className="space-y-2 pt-2 text-center font-medium text-zinc-900"
+          >
+            <div>
+              {tools.map((tool) => (
+                <Card
+                  key={tool.href}
+                  className="flex items-center justify-between border-black/5 p-3"
+                >
+                  <div className="flex items-center gap-x-4">
+                    <div className={cn("w-fit rounded-md p-2", tool.bgColor)}>
+                      <tool.icon className={cn("h-6 w-6", tool.color)} />
+                    </div>
+                    <div className="text-sm font-semibold">{tool.label}</div>
                   </div>
-                  <div className="text-sm font-semibold">{tool.label}</div>
-                </div>
-                <Check className="h-5 w-5 text-primary" />
-              </Card>
-            ))}
+                  <Check className="h-5 w-5 text-primary" />
+                </Card>
+              ))}
+            </div>
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>

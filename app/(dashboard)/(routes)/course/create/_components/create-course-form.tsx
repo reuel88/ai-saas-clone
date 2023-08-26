@@ -28,9 +28,9 @@ export const CreateCourseForm = ({}: CreateCourseFormProps) => {
   const { toast } = useToast();
   const router = useRouter();
 
-  const { mutate: chaptersCreated, isLoading } = useMutation({
-    mutationFn: async (value: z.infer<typeof courseSchema>) => {
-      const { title, units } = value;
+  const { mutate: createChapters, isLoading } = useMutation({
+    mutationFn: async (values: z.infer<typeof courseSchema>) => {
+      const { title, units } = values;
 
       const { data } = await axios.post(`/api/v1/course/chapter`, {
         title,
@@ -49,8 +49,8 @@ export const CreateCourseForm = ({}: CreateCourseFormProps) => {
     },
   });
 
-  const handleSubmit = async (value: z.infer<typeof courseSchema>) => {
-    if (value.units.some((unit) => unit === "")) {
+  const handleSubmit = async (values: z.infer<typeof courseSchema>) => {
+    if (values.units.some((unit) => unit === "")) {
       toast({
         title: "Error",
         description: "Please fill all the units",
@@ -59,7 +59,7 @@ export const CreateCourseForm = ({}: CreateCourseFormProps) => {
       return;
     }
 
-    chaptersCreated(value, {
+    createChapters(values, {
       onSuccess: ({ courseId }) => {
         toast({
           title: "Success",

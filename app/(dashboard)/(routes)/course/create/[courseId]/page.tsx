@@ -2,6 +2,7 @@ import { prisma } from "@/lib/db";
 import { redirect } from "next/navigation";
 import { auth, redirectToSignIn } from "@clerk/nextjs";
 import { Info } from "lucide-react";
+import { ConfirmChapters } from "./_components/confirm-chapters";
 
 interface CourseIdPageProps {
   params: {
@@ -41,7 +42,7 @@ export default async function CourseIdPage({ params }: CourseIdPageProps) {
         <h5 className="text-sm uppercase text-muted-foreground">Course Name</h5>
         <h1 className="text-5xl font-bold">{course.name}</h1>
       </header>
-      <div className="px-4 lg:px-8">
+      <div className="space-y-8 px-4 lg:px-8">
         <div className="mt-5 flex border-none bg-secondary p-4">
           <Info className="mr-3 h-12 w-12 text-blue-400" />
           <div className="max-w-[50ch] ">
@@ -49,6 +50,7 @@ export default async function CourseIdPage({ params }: CourseIdPageProps) {
             then click the Button to confirm and continue
           </div>
         </div>
+        <ConfirmChapters course={course} />
       </div>
     </div>
   );
