@@ -1,32 +1,32 @@
 "use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Code } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { ChatCompletionRequestMessage } from "openai";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useToast } from "@/components/ui/use-toast";
 import ReactMarkdown from "react-markdown";
 import * as z from "zod";
-
+import { BotAvatar } from "@/components/bot-avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
-import { BotAvatar } from "@/components/bot-avatar";
-import { Empty } from "@/components/empty";
+import { useToast } from "@/components/ui/use-toast";
 import { Heading } from "@/components/heading";
+import { Empty } from "@/components/empty";
 import { Loader } from "@/components/loader";
 import { UserAvatar } from "@/components/user-avatar";
+import { routes } from "@/constants";
 import { useProModal } from "@/hooks/useProModal";
 import { cn } from "@/lib/utils";
 
 import { formSchema } from "./constants";
-import { routes } from "@/constants";
 
 export default function CodePage() {
   const { toast } = useToast();
   const router = useRouter();
+
   const proModal = useProModal();
   const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
 

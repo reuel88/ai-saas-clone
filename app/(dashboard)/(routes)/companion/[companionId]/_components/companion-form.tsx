@@ -1,12 +1,14 @@
 "use client";
+
+import { FC } from "react";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Wand2 } from "lucide-react";
 import { Category, Companion } from "@prisma/client";
-import { FC } from "react";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
 import * as z from "zod";
+
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -27,10 +29,10 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
-import {ImageUpload} from "@/components/image-upload";
+import { useToast } from "@/components/ui/use-toast";
 
 import { formSchema, PREAMBLE, SEED_CHAT } from "../constants";
-import { useToast } from "@/components/ui/use-toast";
+import { ImageUpload } from "./image-upload";
 
 interface CompanionFormProps {
   categories: Category[];
