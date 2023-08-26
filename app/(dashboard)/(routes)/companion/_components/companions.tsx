@@ -13,7 +13,7 @@ type CompanionsProps = {
   })[];
 };
 
-const Companions: FC<CompanionsProps> = ({ data }) => {
+export const Companions: FC<CompanionsProps> = ({ data }) => {
   if (data.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center space-y-3 pt-10">
@@ -63,5 +63,3 @@ const Companions: FC<CompanionsProps> = ({ data }) => {
     </div>
   );
 };
-
-export default Companions;

@@ -19,7 +19,7 @@ import { useProModal } from "@/hooks/useProModal";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/components/ui/use-toast";
 
-const ProModal: FC = () => {
+export const ProModal: FC = () => {
   const { toast } = useToast();
   const proModal = useProModal();
   const [isLoading, setIsLoading] = useState(false);
@@ -100,5 +100,3 @@ const ProModal: FC = () => {
     </Dialog>
   );
 };
-
-export default ProModal;
