@@ -1,22 +1,20 @@
 "use client";
 
 import { FC, useEffect, useState } from "react";
-import { CldUploadButton } from "next-cloudinary";
 import Image from "next/image";
+import { CldUploadButton } from "next-cloudinary";
 
 type ImageUploadProps = {
   value: string;
   onChange: (src: string) => void;
   disabled?: boolean;
-}
+};
 
-const ImageUpload: FC<ImageUploadProps> = (
-  {
-    value,
-    onChange,
-    disabled
-  }
-) => {
+export const ImageUpload: FC<ImageUploadProps> = ({
+  value,
+  onChange,
+  disabled,
+}) => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -28,14 +26,13 @@ const ImageUpload: FC<ImageUploadProps> = (
   }
 
   return (
-    <div className="space-y-4 w-full flex flex-col justify-center items-center">
+    <div className="flex w-full flex-col items-center justify-center space-y-4">
       <CldUploadButton
         options={{ maxFiles: 1 }}
         onUpload={(result: any) => onChange(result.info.secure_url)}
-        uploadPreset="kth8nxsz">
-        <div
-          className="p-4 border-4 border-dashed border-primary/10 rounded-lg hover:opacity-75 transition flex flex-col space-y-2 items-center justify-center"
-        >
+        uploadPreset="kth8nxsz"
+      >
+        <div className="flex flex-col items-center justify-center space-y-2 rounded-lg border-4 border-dashed border-primary/10 p-4 transition hover:opacity-75">
           <div className="relative h-40 w-40">
             <Image
               fill
@@ -49,5 +46,3 @@ const ImageUpload: FC<ImageUploadProps> = (
     </div>
   );
 };
-
-export default ImageUpload;

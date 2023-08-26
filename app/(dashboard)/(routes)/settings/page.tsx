@@ -1,11 +1,10 @@
 import { Settings } from "lucide-react";
-
-import Heading from "@/components/Heading";
-import { SubscriptionButton } from "@/components/subscription-button";
+import { Heading } from "@/components/heading";
 import { checkSubscription } from "@/lib/subscription";
+import { SubscriptionButton } from "./_components/subscription-button";
 
 export default async function SettingsPage() {
-  const isPro = await checkSubscription();
+  const isPro = await checkSubscription(); // TODO: move to context
 
   return (
     <div>

@@ -1,11 +1,12 @@
-import SearchInput from "@/components/search-input";
-import { prisma } from "@/lib/db";
-import Categories from "@/components/Categories";
-import Companions from "@/components/Companions";
-import Heading from "@/components/Heading";
-import { Bot, Plus, Settings } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Bot, Plus } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Heading } from "@/components/heading";
+import { prisma } from "@/lib/db";
+
+import { Categories } from "./_components/categories";
+import { Companions } from "./_components/companions";
+import { SearchInput } from "./_components/search-input";
 
 interface CompanionPageProps {
   searchParams: {
