@@ -1,7 +1,7 @@
 // Gallery
 
-import Heading from "@/components/Heading";
-import { GraduationCap, Plus } from "lucide-react";
+import { Heading } from "@/components/heading";
+import { Plus } from "lucide-react";
 import { routes } from "@/constants";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";

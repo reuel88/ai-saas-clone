@@ -13,7 +13,7 @@ type HeadingProps = {
   bgColor?: string;
 };
 
-const Heading: FC<HeadingProps> = ({
+export const Heading: FC<HeadingProps> = ({
   children,
   title,
   description,
@@ -41,5 +41,3 @@ const Heading: FC<HeadingProps> = ({
     </header>
   );
 };
-
-export default Heading;

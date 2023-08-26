@@ -1,8 +1,8 @@
 import SearchInput from "@/components/search-input";
 import { prisma } from "@/lib/db";
-import Categories from "@/components/Categories";
-import Companions from "@/components/Companions";
-import Heading from "@/components/Heading";
+import { Categories } from "@/components/categories";
+import { Companions } from "@/components/companions";
+import { Heading } from "@/components/heading";
 import { Bot, Plus, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";

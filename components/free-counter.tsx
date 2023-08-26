@@ -12,7 +12,7 @@ type FreeCounterProps = {
   isPro: boolean;
 };
 
-const FreeCounter: FC<FreeCounterProps> = ({
+export const FreeCounter: FC<FreeCounterProps> = ({
   apiLimitCount = 0,
   isPro = false,
 }) => {
@@ -46,5 +46,3 @@ const FreeCounter: FC<FreeCounterProps> = ({
     </div>
   );
 };
-
-export default FreeCounter;

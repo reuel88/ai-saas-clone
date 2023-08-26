@@ -10,7 +10,7 @@ type ImageUploadProps = {
   disabled?: boolean;
 }
 
-const ImageUpload: FC<ImageUploadProps> = (
+export const ImageUpload: FC<ImageUploadProps> = (
   {
     value,
     onChange,
@@ -49,5 +49,3 @@ const ImageUpload: FC<ImageUploadProps> = (
     </div>
   );
 };
-
-export default ImageUpload;

@@ -27,7 +27,7 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
-import ImageUpload from "@/components/ImageUpload";
+import {ImageUpload} from "@/components/image-upload";
 
 import { formSchema, PREAMBLE, SEED_CHAT } from "../constants";
 import { useToast } from "@/components/ui/use-toast";

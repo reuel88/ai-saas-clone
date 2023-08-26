@@ -5,7 +5,7 @@ import { Poppins } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { MobileSidebar } from "@/components/mobile-sidebar";
 import ModeToggle from "@/components/mode-toggle";
-import FreeCounter from "@/components/FreeCounter";
+import { FreeCounter } from "@/components/free-counter";
 
 const font = Poppins({ weight: "600", subsets: ["latin"] });
 

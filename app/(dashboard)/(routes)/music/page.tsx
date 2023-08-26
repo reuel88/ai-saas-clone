@@ -10,9 +10,9 @@ import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
-import Empty from "@/components/Empty";
-import Heading from "@/components/Heading";
-import Loader from "@/components/Loader";
+import { Empty } from "@/components/empty";
+import { Heading } from "@/components/heading";
+import { Loader } from "@/components/loader";
 import { useProModal } from "@/hooks/useProModal";
 
 import { formSchema } from "./constants";

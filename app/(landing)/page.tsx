@@ -1,6 +1,6 @@
-import { LandingNavbar } from "@/components/LandingNavbar";
-import { LandingHero } from "@/components/LandingHero";
-import { LandingContent } from "@/components/LandingContent";
+import { LandingNavbar } from "@/components/landing-navbar";
+import { LandingHero } from "@/components/landing-hero";
+import { LandingContent } from "@/components/landing-content";
 
 export default function LandingPage() {
   return (
