@@ -20,16 +20,12 @@ type outputUnits = {
     /api/v1/course/chapter
  */
 export async function POST(req: Request, res: Response) {
-  console.log("called");
-
   try {
-    // const { userId } = auth();
-    const body = await req.json();
-    const { title, units } = courseSchema.parse(body);
+    const { userId } = auth();
 
-    // if (!userId) {
-    //   return new NextResponse("Unauthorized", { status: 401 });
-    // }
+    if (!userId) {
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
 
     // const freeTrial = await checkApiLimit();
     // const isPro = await checkSubscription();
@@ -38,7 +34,10 @@ export async function POST(req: Request, res: Response) {
     //   return new NextResponse("Free trial has expired", { status: 403 });
     // }
 
-    let outputUnits: outputUnits = await strict_output(
+    const body = await req.json();
+    const { title, units } = courseSchema.parse(body);
+
+    const outputUnits: outputUnits = await strict_output(
       "You are an AI capable of curating course content, coming up with relevant chapter titles, and finding relevant youtube videos for each chapter",
       new Array(units.length).fill(
         `It is your job to create a course about ${title}. The user has requested to create chapters for each of the units. Then, for each chapter, provide a detailed youtube search query that can be used to find an informative educational video for each chapter. Each query should give an educational informative course in youtube.`,
@@ -91,7 +90,7 @@ export async function POST(req: Request, res: Response) {
     console.log("[CHAPTER_ERROR]", error);
 
     if (error instanceof ZodError) {
-      return new NextResponse("invalid body", { status: 400 });
+      return new NextResponse("Invalid body", { status: 400 });
     }
 
     return new NextResponse("Internal error", { status: 500 });

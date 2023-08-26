@@ -71,7 +71,7 @@ export const routes = [
   },
   // {
   //   id: "course",
-  //   label: "Generate Courses",
+  //   label: "Course Generation",
   //   description: "Generate courses using descriptive text.",
   //   icon: GraduationCap,
   //   href: "/course",
