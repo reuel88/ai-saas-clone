@@ -3,15 +3,16 @@ import { FC, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import ReactMarkdown from "react-markdown";
 import children = ReactMarkdown.propTypes.children;
+import { routes } from "@/constants";
 
-type HeadingProps = {
+interface HeadingProps {
   children?: ReactNode;
   title: string;
   description: string;
   icon: LucideIcon;
   iconColor?: string;
   bgColor?: string;
-};
+}
 
 export const Heading: FC<HeadingProps> = ({
   children,
@@ -39,5 +40,26 @@ export const Heading: FC<HeadingProps> = ({
 
       {children && <div>{children}</div>}
     </header>
+  );
+};
+
+interface HeadingContextProps {
+  id: string;
+  children?: ReactNode;
+}
+
+export const HeadingContext: FC<HeadingContextProps> = ({ id, children }) => {
+  const headingData: any = routes.find((route) => route.id === id);
+
+  return (
+    <Heading
+      title={headingData.label}
+      description={headingData.description}
+      icon={headingData.icon}
+      iconColor={headingData.color}
+      bgColor={headingData.bgColor}
+    >
+      {children}
+    </Heading>
   );
 };

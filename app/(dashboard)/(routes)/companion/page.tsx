@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Bot, Plus } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Heading } from "@/components/heading";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Heading, HeadingContext } from "@/components/heading";
 import { prisma } from "@/lib/db";
 
 import { Categories } from "./_components/categories";
@@ -41,20 +41,18 @@ export default async function CompanionPage({
 
   return (
     <div>
-      <Heading
-        title="Companion"
-        description="Chat with someone"
-        icon={Bot}
-        iconColor="text-cyan-500"
-        bgColor="bg-cyan-500/10"
-      >
-        <Button asChild variant="secondary" className="flex gap-x-2">
-          <Link href={`/companion/new`}>
-            <p className="font-bold">Create New</p>
-            <Plus />
-          </Link>
-        </Button>
-      </Heading>
+      <HeadingContext id="companion">
+        <Link
+          className={buttonVariants({
+            variant: "secondary",
+            className: "flex gap-x-2",
+          })}
+          href={`/companion/new`}
+        >
+          <p className="font-bold">Create New</p>
+          <Plus />
+        </Link>
+      </HeadingContext>
       <div className="h-full space-y-2 p-4 lg:px-8">
         <SearchInput />
         <Categories data={categories} />
