@@ -23,6 +23,7 @@ export const routes = [
   {
     id: "companion",
     label: "Companion",
+    description: "Chat with someone",
     icon: Bot,
     href: "/companion",
     color: "text-cyan-500",
@@ -31,6 +32,7 @@ export const routes = [
   {
     id: "conversation",
     label: "Conversation",
+    description: "Our most advanced conversation model.",
     icon: MessageSquare,
     href: "/conversation",
     color: "text-violet-500",
@@ -39,6 +41,7 @@ export const routes = [
   {
     id: "music",
     label: "Music Generation",
+    description: "Turn your prompt into music.",
     icon: Music,
     href: "/music",
     color: "text-emerald-500",
@@ -47,6 +50,7 @@ export const routes = [
   {
     id: "image",
     label: "image Generation",
+    description: "Turn your prompt into an image.",
     icon: ImageIcon,
     href: "/image",
     color: "text-pink-700",
@@ -55,6 +59,7 @@ export const routes = [
   {
     id: "video",
     label: "Video Generation",
+    description: "Turn your prompt into video.",
     icon: VideoIcon,
     href: "/video",
     color: "text-orange-700",
@@ -69,15 +74,15 @@ export const routes = [
     color: "text-green-700",
     bgColor: "bg-green-700/10",
   },
-  // {
-  //   id: "course",
-  //   label: "Course Generation",
-  //   description: "Generate courses using descriptive text.",
-  //   icon: GraduationCap,
-  //   href: "/course",
-  //   color: "text-indigo-500",
-  //   bgColor: "bg-indigo-500/10",
-  // },
+  {
+    id: "course",
+    label: "Course Generation",
+    description: "Generate courses using descriptive text.",
+    icon: GraduationCap,
+    href: "/course",
+    color: "text-indigo-500",
+    bgColor: "bg-indigo-500/10",
+  },
   {
     id: "settings",
     label: "Settings",

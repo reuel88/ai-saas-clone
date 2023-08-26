@@ -1,27 +1,26 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import axios from "axios";
-import { useForm } from "react-hook-form";
-import ReactMarkdown from "react-markdown";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { ChatCompletionRequestMessage } from "openai";
-import { useMutation } from "@tanstack/react-query";
-import * as z from "zod";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/ui/use-toast";
-import { BotAvatar } from "@/components/bot-avatar";
 import { Loader } from "@/components/loader";
 import { Empty } from "@/components/empty";
-import { UserAvatar } from "@/components/user-avatar";
-import { useProModal } from "@/hooks/useProModal";
 import { cn } from "@/lib/utils";
+import { UserAvatar } from "@/components/user-avatar";
+import { BotAvatar } from "@/components/bot-avatar";
+import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
+import { useProModal } from "@/hooks/useProModal";
+import { useState } from "react";
+import { ChatCompletionRequestMessage } from "openai";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 import { formSchema } from "../constants";
+import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
 
-export const CodeForm = () => {
+export const ConversationForm = () => {
   const { toast } = useToast();
   const router = useRouter();
   const proModal = useProModal();
@@ -36,7 +35,7 @@ export const CodeForm = () => {
 
       const newMessages = [...messages, userMessage];
 
-      const { data } = await axios.post("/api/v1/code", {
+      const { data } = await axios.post("/api/v1/conversation", {
         messages: newMessages,
       });
 
@@ -93,7 +92,7 @@ export const CodeForm = () => {
                       type="text"
                       className="border-0 bg-transparent outline-none focus-visible:ring-transparent focus-visible:ring-offset-transparent"
                       disabled={isLoading}
-                      placeholder="Simple toggle button using react hooks."
+                      placeholder="How do I calculate the radius of a circle?"
                       {...field}
                     />
                   </FormControl>
@@ -132,21 +131,7 @@ export const CodeForm = () => {
               )}
             >
               {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
-              <ReactMarkdown
-                components={{
-                  pre: ({ node, ...props }) => (
-                    <div className="my-2 w-full overflow-auto rounded-lg bg-black/10 p-2">
-                      <pre {...props} />
-                    </div>
-                  ),
-                  code: ({ node, ...props }) => (
-                    <code className="rounded-lg bg-black/10 p-1" {...props} />
-                  ),
-                }}
-                className="overflow-hidden text-sm leading-7"
-              >
-                {message.content || ""}
-              </ReactMarkdown>
+              <p className="text-sm">{message.content}</p>
             </div>
           ))}
         </div>
