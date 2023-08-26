@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { BotAvatar } from "@/components/bot-avatar";
 import { Loader } from "@/components/loader";
-import Empty from "@/components/Empty";
+import { Empty } from "@/components/empty";
 import { UserAvatar } from "@/components/user-avatar";
 import { useProModal } from "@/hooks/useProModal";
 import { cn } from "@/lib/utils";

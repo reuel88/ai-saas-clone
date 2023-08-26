@@ -1,4 +1,4 @@
-import Heading from "@/components/Heading";
+import { Heading } from "@/components/heading";
 import { routes } from "@/constants";
 
 import { CodeForm } from "./_components/code-form";
