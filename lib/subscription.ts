@@ -4,7 +4,9 @@ import { prisma } from "@/lib/db";
 
 const DAY_IN_MS = 86_400_000;
 
-export const checkSubscription = async () => {
+export const checkSubscription = (caller: string) => async () => {
+  console.log(caller);
+
   const { userId } = auth();
 
   if (!userId) {
