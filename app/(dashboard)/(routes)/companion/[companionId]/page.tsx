@@ -1,9 +1,7 @@
 import { prisma } from "@/lib/db";
 
 import { CompanionForm } from "./_components/companion-form";
-import { checkSubscription } from "@/lib/subscription";
 import { auth, redirectToSignIn } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
 
 type CompanionIdPageProps = {
   params: {
@@ -19,12 +17,6 @@ export default async function CompanionIdPage({
   if (!userId) {
     return redirectToSignIn();
   }
-
-  // const validSubscription = await checkSubscription();
-  //
-  // if (!validSubscription) {
-  //   return redirect("/");
-  // }
 
   const companion = await prisma.companion.findUnique({
     where: {

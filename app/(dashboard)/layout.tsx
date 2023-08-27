@@ -12,7 +12,7 @@ export default async function DashboardLayout({
   children,
 }: DashboardLayoutProps) {
   const apiLimitCount = await getApiLimitCount();
-  const isPro = await checkSubscription();
+  const isPro = await checkSubscription("DashboardLayout")();
 
   return (
     <div className="min-h-full">

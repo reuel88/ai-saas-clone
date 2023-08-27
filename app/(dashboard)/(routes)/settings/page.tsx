@@ -4,7 +4,7 @@ import { checkSubscription } from "@/lib/subscription";
 import { SubscriptionButton } from "./_components/subscription-button";
 
 export default async function SettingsPage() {
-  const isPro = await checkSubscription(); // TODO: move to context
+  const isPro = await checkSubscription("SettingsPage")(); // TODO: move to context
 
   return (
     <div>

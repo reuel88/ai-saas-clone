@@ -1,33 +1,44 @@
 // Gallery
 
-import { Heading } from "@/components/heading";
+import { HeadingContext } from "@/components/heading";
 import { Plus } from "lucide-react";
-import { routes } from "@/constants";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
+import { prisma } from "@/lib/db";
+import { GalleryCourseCard } from "./_components/gallery-course-card";
 
 interface CoursePageProps {}
 
 export default async function CoursePage({}: CoursePageProps) {
-  const headingData: any = routes.find((route) => route.id === "course");
+  const courses = await prisma.course.findMany({
+    include: {
+      units: {
+        include: { chapters: true },
+      },
+    },
+  });
 
   return (
     <div>
-      <Heading
-        title={headingData.label}
-        description={headingData.description}
-        icon={headingData.icon}
-        iconColor={headingData.color}
-        bgColor={headingData.bgColor}
-      >
-        <Button asChild variant="secondary" className="flex gap-x-2">
-          <Link href={`/course/create`}>
-            <p className="font-bold">Generate New</p>
-            <Plus />
-          </Link>
-        </Button>
-      </Heading>
-      <div className="px-4 lg:px-8"></div>
+      <HeadingContext id="course">
+        <Link
+          className={buttonVariants({
+            variant: "secondary",
+            className: "flex gap-x-2",
+          })}
+          href={`/course/create`}
+        >
+          <p className="font-bold">Generate New</p>
+          <Plus />
+        </Link>
+      </HeadingContext>
+      <div className=" px-4 lg:px-8">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
+          {courses.map((course) => (
+            <GalleryCourseCard key={course.id} course={course} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
