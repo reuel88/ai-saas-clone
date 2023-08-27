@@ -38,9 +38,10 @@ export async function POST(
       return new NextResponse("Not Found", { status: 404 });
     }
 
-    const videoId = await searchYoutube(chapter.youtubeSearchQuery);
+    const videos = await searchYoutube(chapter.youtubeSearchQuery);
 
-    let transcript = await getTranscript(videoId);
+    let videoId = videos[0].id.videoId;
+    let transcript = await getTranscript(videos[0].id.videoId);
     let maxLength = 1000;
     transcript = transcript.split(" ").slice(0, maxLength).join(" ");
 
@@ -50,8 +51,6 @@ export async function POST(
         transcript,
       { summary: "summary of the transcript" },
     );
-
-    console.log(summary);
 
     const questions = await getQuestionsFromTranscript(
       transcript,

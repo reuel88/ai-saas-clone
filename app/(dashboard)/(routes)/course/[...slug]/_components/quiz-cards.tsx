@@ -22,13 +22,9 @@ export const QuizCards = ({ chapter }: QuizCardsProps) => {
   const checkAnswer = useCallback(() => {
     const newQuestionState = { ...questionState };
     chapter.questions.forEach((question) => {
-      const user_answer = answers[question.id];
-      if (!user_answer) return;
-      if (user_answer === question.answer) {
-        newQuestionState[question.id] = true;
-      } else {
-        newQuestionState[question.id] = false;
-      }
+      const userAnswer = answers[question.id];
+      if (!userAnswer) return;
+      newQuestionState[question.id] = userAnswer === question.answer;
       setQuestionState(newQuestionState);
     });
   }, [answers, questionState, chapter.questions]);
