@@ -73,7 +73,7 @@ export const ConfirmChapters = ({ course }: ConfirmChaptersFormProps) => {
 
           {totalChaptersCount === completedChapters.size && (
             <Link
-              href={`/course/${course.id}`}
+              href={`/course/${course.id}/0/0`}
               className={buttonVariants({
                 className: "flex gap-x-2",
               })}

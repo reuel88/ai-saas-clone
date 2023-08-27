@@ -59,7 +59,7 @@ export const ImageForm = () => {
         form.reset();
       },
       onError: (error: any) => {
-        console.log(error);
+        console.error(error);
         if (error?.response?.status === 403) {
           proModal.onOpen();
         } else {

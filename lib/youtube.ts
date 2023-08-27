@@ -39,7 +39,7 @@ export async function getTranscript(videoId: string) {
 
     return transcript.replaceAll("\n", "");
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return "";
   }
 }
@@ -69,6 +69,5 @@ export async function getQuestionsFromTranscript(
       option3: "option3 with max length of 15 words",
     },
   );
-  console.log(questions);
   return questions;
 }
