@@ -86,6 +86,7 @@ export const routes = [
   {
     id: "settings",
     label: "Settings",
+    description: "Manage account settings.",
     icon: Settings,
     href: "/settings",
   },

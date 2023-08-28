@@ -1,9 +1,9 @@
 "use client";
 import { Chapter, Question } from "@prisma/client";
-import { useCallback, useState } from "react";
+import { ChevronRight } from "lucide-react";
+import { FC, useCallback, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { ChevronRight } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
@@ -13,7 +13,7 @@ interface QuizCardsProps {
   };
 }
 
-export const QuizCards = ({ chapter }: QuizCardsProps) => {
+export const QuizCards: FC<QuizCardsProps> = ({ chapter }) => {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [questionState, setQuestionState] = useState<
     Record<string, boolean | null>
@@ -47,7 +47,7 @@ export const QuizCards = ({ chapter }: QuizCardsProps) => {
               <h1 className="text-lg font-semibold">{question.question}</h1>
               <div className="mt-2">
                 <RadioGroup
-                  onValueChange={(e) => {
+                  onValueChange={(e: string) => {
                     setAnswers((prev) => {
                       return {
                         ...prev,

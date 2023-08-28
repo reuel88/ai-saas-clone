@@ -1,9 +1,12 @@
 "use client";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { AnimatePresence, motion } from "framer-motion";
 import { Plus, Trash } from "lucide-react";
+import { FC } from "react";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import {
@@ -19,19 +22,11 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/components/ui/use-toast";
 import { courseSchema } from "@/validators/course";
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
-import { SubscriptionAction } from "@/app/(dashboard)/(routes)/course/create/_components/subscription-action";
+import { SubscriptionAction } from "./subscription-action";
 
-interface CreateCourseFormProps {
-  apiLimitCount: number;
-  isPro: boolean;
-}
+interface CreateCourseFormProps {}
 
-export const CreateCourseForm = ({
-  apiLimitCount = 0,
-  isPro = false,
-}: CreateCourseFormProps) => {
+export const CreateCourseForm: FC<CreateCourseFormProps> = ({}) => {
   const { toast } = useToast();
   const router = useRouter();
 
@@ -226,7 +221,7 @@ export const CreateCourseForm = ({
           </Button>
         </form>
       </Form>
-      <SubscriptionAction apiLimitCount={apiLimitCount} isPro={isPro} />
+      <SubscriptionAction />
     </div>
   );
 };

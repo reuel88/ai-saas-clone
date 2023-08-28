@@ -1,18 +1,19 @@
 import { Chapter, Unit } from "@prisma/client";
+import { FC } from "react";
 
-type Props = {
+interface MainVideoSummaryProps {
   chapter: Chapter;
   unit: Unit;
   unitIndex: number;
   chapterIndex: number;
-};
+}
 
-export const MainVideoSummary = ({
+export const MainVideoSummary: FC<MainVideoSummaryProps> = ({
   unit,
   unitIndex,
   chapter,
   chapterIndex,
-}: Props) => {
+}) => {
   return (
     <div className="space-y-4">
       <div>

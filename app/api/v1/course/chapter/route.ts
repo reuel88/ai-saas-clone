@@ -2,7 +2,7 @@ import { auth } from "@clerk/nextjs";
 import { courseSchema } from "@/validators/course";
 import { NextResponse } from "next/server";
 import { ZodError } from "zod";
-import { checkApiLimit } from "@/lib/api-limit";
+import { checkApiLimit, increaseApiLimit } from "@/lib/api-limit";
 import { checkSubscription } from "@/lib/subscription";
 import { strict_output } from "@/lib/gpt";
 import { getUnsplashImage } from "@/lib/unsplash";
@@ -27,12 +27,12 @@ export async function POST(req: Request, res: Response) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    // const freeTrial = await checkApiLimit();
-    // const isPro = await checkSubscription('[CHAPTER_POST]')();
-    //
-    // if (!freeTrial && !isPro) {
-    //   return new NextResponse("Free trial has expired", { status: 403 });
-    // }
+    const freeTrial = await checkApiLimit();
+    const isPro = await checkSubscription("[CHAPTER_POST]")();
+
+    if (!freeTrial && !isPro) {
+      return new NextResponse("Free trial has expired", { status: 403 });
+    }
 
     const body = await req.json();
     const { title, units } = courseSchema.parse(body);
@@ -83,6 +83,10 @@ export async function POST(req: Request, res: Response) {
           };
         }),
       });
+    }
+
+    if (!isPro) {
+      await increaseApiLimit();
     }
 
     return NextResponse.json({ courseId: course.id });

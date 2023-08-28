@@ -1,26 +1,26 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { FC, useState } from "react";
+import { useForm } from "react-hook-form";
+import { ChatCompletionRequestMessage } from "openai";
+import * as z from "zod";
+import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Loader } from "@/components/loader";
-import { Empty } from "@/components/empty";
-import { cn } from "@/lib/utils";
-import { UserAvatar } from "@/components/user-avatar";
-import { BotAvatar } from "@/components/bot-avatar";
 import { useToast } from "@/components/ui/use-toast";
-import { useRouter } from "next/navigation";
+import { BotAvatar } from "@/components/bot-avatar";
+import { Empty } from "@/components/empty";
+import { Loader } from "@/components/loader";
+import { UserAvatar } from "@/components/user-avatar";
 import { useProModal } from "@/hooks/useProModal";
-import { useState } from "react";
-import { ChatCompletionRequestMessage } from "openai";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
+import { cn } from "@/lib/utils";
 import { formSchema } from "../constants";
-import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
-import { useMutation } from "@tanstack/react-query";
 
-export const ConversationForm = () => {
+export const ConversationForm: FC = () => {
   const { toast } = useToast();
   const router = useRouter();
   const proModal = useProModal();

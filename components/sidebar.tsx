@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FC } from "react";
-import { cn } from "@/lib/utils";
 import { routes } from "@/constants";
+import { cn } from "@/lib/utils";
+import { useSubscription } from "@/providers/SubscriptionProvider";
 
 type SidebarItemProps = {
   route: (typeof routes)[0];
@@ -28,12 +29,10 @@ const SidebarItem: FC<SidebarItemProps> = ({ route, pathname }) => {
   );
 };
 
-type SidebarProps = {
-  apiLimitCount: number;
-  isPro: boolean;
-};
+type SidebarProps = {};
 
-export const Sidebar: FC<SidebarProps> = ({ isPro = false }) => {
+export const Sidebar: FC<SidebarProps> = () => {
+  const { isPro } = useSubscription();
   const pathname = usePathname();
 
   return (

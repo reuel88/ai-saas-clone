@@ -1,11 +1,11 @@
 "use client";
 import { Chapter, Course, Unit } from "@prisma/client";
-import { ChapterCard, ChapterCardHandler } from "./chapter-card";
-import { useMemo, useRef, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { FC, useMemo, useRef, useState } from "react";
+import Link from "next/link";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import Link from "next/link";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChapterCard, ChapterCardHandler } from "./chapter-card";
 
 interface ConfirmChaptersFormProps {
   course: Course & {
@@ -14,7 +14,7 @@ interface ConfirmChaptersFormProps {
     })[];
   };
 }
-export const ConfirmChapters = ({ course }: ConfirmChaptersFormProps) => {
+export const ConfirmChapters: FC<ConfirmChaptersFormProps> = ({ course }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const chapterRefs = useRef<{ [key: string]: ChapterCardHandler }>({});

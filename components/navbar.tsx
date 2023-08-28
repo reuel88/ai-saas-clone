@@ -1,27 +1,21 @@
-import { FC } from "react";
-import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
+import { FC } from "react";
 import { Poppins } from "next/font/google";
-import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { FreeCounter } from "@/components/free-counter";
 import { MobileSidebar } from "@/components/mobile-sidebar";
 import { ModeToggle } from "@/components/mode-toggle";
-import { FreeCounter } from "@/components/free-counter";
+import { cn } from "@/lib/utils";
 
 const font = Poppins({ weight: "600", subsets: ["latin"] });
 
-type NavbarProps = {
-  apiLimitCount: number;
-  isPro: boolean;
-};
+type NavbarProps = {};
 
-export const Navbar: FC<NavbarProps> = async ({
-  apiLimitCount = 0,
-  isPro = false,
-}) => {
+export const Navbar: FC<NavbarProps> = async ({}) => {
   return (
     <div className="fixed z-50 flex h-16 w-full items-center justify-between border-b border-primary/10 bg-secondary px-4 py-2">
       <div className="flex items-center">
-        <MobileSidebar isPro={isPro} apiLimitCount={apiLimitCount} />
+        <MobileSidebar />
         <Link href="/">
           <h1
             className={cn(
@@ -35,7 +29,7 @@ export const Navbar: FC<NavbarProps> = async ({
       </div>
 
       <div className="flex items-center gap-x-3">
-        {!isPro && <FreeCounter isPro={isPro} apiLimitCount={apiLimitCount} />}
+        <FreeCounter />
         <ModeToggle />
         <UserButton afterSignOutUrl="/" />
       </div>

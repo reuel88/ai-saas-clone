@@ -1,27 +1,27 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import { useRouter } from "next/navigation";
+import { ChatCompletionRequestMessage } from "openai";
+import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import ReactMarkdown from "react-markdown";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { ChatCompletionRequestMessage } from "openai";
-import { useMutation } from "@tanstack/react-query";
 import * as z from "zod";
+import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { BotAvatar } from "@/components/bot-avatar";
-import { Loader } from "@/components/loader";
 import { Empty } from "@/components/empty";
+import { Loader } from "@/components/loader";
 import { UserAvatar } from "@/components/user-avatar";
 import { useProModal } from "@/hooks/useProModal";
 import { cn } from "@/lib/utils";
 import { formSchema } from "../constants";
 
-export const CodeForm = () => {
+export const CodeForm: FC = () => {
   const { toast } = useToast();
   const router = useRouter();
   const proModal = useProModal();

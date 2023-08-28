@@ -5,15 +5,9 @@ import { type FC, useEffect, useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Sidebar } from "@/components/sidebar";
 
-type MobileSidebarProps = {
-  apiLimitCount: number;
-  isPro: boolean;
-};
+type MobileSidebarProps = {};
 
-export const MobileSidebar: FC<MobileSidebarProps> = ({
-  apiLimitCount = 0,
-  isPro = false,
-}) => {
+export const MobileSidebar: FC<MobileSidebarProps> = ({}) => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -30,7 +24,7 @@ export const MobileSidebar: FC<MobileSidebarProps> = ({
         <Menu />
       </SheetTrigger>
       <SheetContent side="left" className="w-32 bg-secondary p-0 pt-10">
-        <Sidebar isPro={isPro} apiLimitCount={apiLimitCount} />
+        <Sidebar />
       </SheetContent>
     </Sheet>
   );

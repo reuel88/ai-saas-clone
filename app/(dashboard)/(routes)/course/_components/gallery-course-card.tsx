@@ -1,6 +1,7 @@
 import { Chapter, Course, Unit } from "@prisma/client";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import { FC } from "react";
 
 interface GalleryCourseCardProps {
   course: Course & {
@@ -9,7 +10,7 @@ interface GalleryCourseCardProps {
     })[];
   };
 }
-export const GalleryCourseCard = ({ course }: GalleryCourseCardProps) => {
+export const GalleryCourseCard: FC<GalleryCourseCardProps> = ({ course }) => {
   return (
     <>
       <div className="rounded-lg border border-secondary">

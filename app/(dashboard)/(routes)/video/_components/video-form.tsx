@@ -3,20 +3,20 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { useState } from "react";
+import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import * as z from "zod";
-import { Input } from "@/components/ui/input";
-import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
-import { Loader } from "@/components/loader";
 import { Empty } from "@/components/empty";
+import { Loader } from "@/components/loader";
 import { useProModal } from "@/hooks/useProModal";
 import { formSchema } from "../constants";
 
-export const VideoForm = () => {
+export const VideoForm: FC = () => {
   const { toast } = useToast();
   const router = useRouter();
   const proModal = useProModal();

@@ -1,7 +1,19 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import { Download } from "lucide-react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { FC, useState } from "react";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { Button } from "@/components/ui/button";
+import { Card, CardFooter } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Loader } from "@/components/loader";
 import {
   Select,
   SelectContent,
@@ -9,24 +21,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { amountOptions, formSchema, resolutionOptions } from "../constants";
-import { Button } from "@/components/ui/button";
-import { Loader } from "@/components/loader";
-import { Empty } from "@/components/empty";
-import { Card, CardFooter } from "@/components/ui/card";
-import Image from "next/image";
-import { Download } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
-import { useRouter } from "next/navigation";
+import { Empty } from "@/components/empty";
 import { useProModal } from "@/hooks/useProModal";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
-import { useMutation } from "@tanstack/react-query";
+import { amountOptions, formSchema, resolutionOptions } from "../constants";
 
-export const ImageForm = () => {
+export const ImageForm: FC = () => {
   const { toast } = useToast();
   const router = useRouter();
   const proModal = useProModal();

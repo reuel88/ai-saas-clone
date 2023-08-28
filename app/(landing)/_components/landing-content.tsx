@@ -1,5 +1,6 @@
 "use client";
 
+import { FC } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const testimonials = [
@@ -31,7 +32,7 @@ const testimonials = [
   },
 ];
 
-export const LandingContent = () => {
+export const LandingContent: FC = () => {
   return (
     <div className="px-10 pb-20">
       <h2 className="mb-10 text-center text-4xl font-extrabold text-white">

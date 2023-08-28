@@ -1,12 +1,12 @@
 "use client";
 
-import TypewriterComponent from "typewriter-effect";
-import Link from "next/link";
 import { useAuth } from "@clerk/nextjs";
-
+import Link from "next/link";
+import { FC } from "react";
+import TypewriterComponent from "typewriter-effect";
 import { Button } from "@/components/ui/button";
 
-export const LandingHero = () => {
+export const LandingHero: FC = () => {
   const { isSignedIn } = useAuth();
 
   return (

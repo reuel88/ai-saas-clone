@@ -6,16 +6,15 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { MAX_FREE_COUNTS } from "@/constants";
 import { useProModal } from "@/hooks/useProModal";
+import { useSubscription } from "@/providers/SubscriptionProvider";
+import { useApiLimit } from "@/providers/ApiLimitProvider";
 
-type FreeCounterProps = {
-  apiLimitCount: number;
-  isPro: boolean;
-};
+type FreeCounterProps = {};
 
-export const FreeCounter: FC<FreeCounterProps> = ({
-  apiLimitCount = 0,
-  isPro = false,
-}) => {
+export const FreeCounter: FC<FreeCounterProps> = ({}) => {
+  const { apiLimitCount } = useApiLimit();
+  const { isPro } = useSubscription();
+
   const [mounted, setMounted] = useState(false);
   const proModal = useProModal();
 

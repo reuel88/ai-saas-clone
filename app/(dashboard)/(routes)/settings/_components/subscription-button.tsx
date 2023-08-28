@@ -3,17 +3,15 @@
 import axios from "axios";
 import { FC, useState } from "react";
 import { Zap } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
+import { useSubscription } from "@/providers/SubscriptionProvider";
 
-type SubscriptionButtonProps = {
-  isPro: boolean;
-};
+interface SubscriptionButtonProps {}
 
-export const SubscriptionButton: FC<SubscriptionButtonProps> = ({
-  isPro = false,
-}) => {
+export const SubscriptionButton: FC<SubscriptionButtonProps> = ({}) => {
+  const { isPro } = useSubscription();
+
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
 

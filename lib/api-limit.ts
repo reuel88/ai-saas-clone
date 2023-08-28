@@ -44,7 +44,9 @@ export const checkApiLimit = async () => {
   return !userApiLimit || userApiLimit.count < MAX_FREE_COUNTS ? true : false;
 };
 
-export const getApiLimitCount = async () => {
+export const getApiLimitCount = (caller: string) => async () => {
+  console.log(caller);
+
   const { userId } = auth();
 
   if (!userId) {
