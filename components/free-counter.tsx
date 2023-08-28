@@ -36,7 +36,7 @@ export const FreeCounter: FC<FreeCounterProps> = ({
         <Progress
           aria-labelledby="progress-label"
           className="h-3"
-          value={(apiLimitCount / MAX_FREE_COUNTS) * 100}
+          value={apiLimitCount ? (apiLimitCount / MAX_FREE_COUNTS) * 100 : 0}
         />
       </div>
       <Button onClick={proModal.onOpen} variant="premium" className="w-full">

@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { ModalProvider } from "@/providers/ModalProvider";
 import { CrispProvider } from "@/providers/CrispProvider";
 import { ReactQueryProvider } from "@/providers/ReactQueryProvider";
-import { ThemeProvider } from "@/providers/ThemeProvider";
+import { ModeProvider } from "@/providers/ModeProvider";
 import { Toaster } from "@/components/ui/toaster";
 import { ReactNode } from "react";
 
@@ -28,11 +28,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <CrispProvider />
         <body className={cn("bg-primary-foreground", inter.className)}>
           <ReactQueryProvider>
-            <ThemeProvider>
+            <ModeProvider>
               <ModalProvider />
               {children}
               <Toaster />
-            </ThemeProvider>
+            </ModeProvider>
           </ReactQueryProvider>
         </body>
       </html>

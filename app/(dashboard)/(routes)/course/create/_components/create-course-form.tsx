@@ -21,10 +21,17 @@ import { useToast } from "@/components/ui/use-toast";
 import { courseSchema } from "@/validators/course";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import { SubscriptionAction } from "@/app/(dashboard)/(routes)/course/create/_components/subscription-action";
 
-interface CreateCourseFormProps {}
+interface CreateCourseFormProps {
+  apiLimitCount: number;
+  isPro: boolean;
+}
 
-export const CreateCourseForm = ({}: CreateCourseFormProps) => {
+export const CreateCourseForm = ({
+  apiLimitCount = 0,
+  isPro = false,
+}: CreateCourseFormProps) => {
   const { toast } = useToast();
   const router = useRouter();
 
@@ -219,6 +226,7 @@ export const CreateCourseForm = ({}: CreateCourseFormProps) => {
           </Button>
         </form>
       </Form>
+      <SubscriptionAction apiLimitCount={apiLimitCount} isPro={isPro} />
     </div>
   );
 };
